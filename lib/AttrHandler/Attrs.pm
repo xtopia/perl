@@ -15,14 +15,17 @@ use constant {
         PHASE  => 5,
 };
 
+my @levels = ('NORM', 'DTLS', '');
 sub debug :ATTR {
     my ($symbol, $code, $level) = @_[SYMBOL, CODE, DATA];
     $level ||= 1;
     my $name = join '::', *{$symbol}{PACKAGE}, *{$symbol}{NAME};
 
+    $level ||= $level or 0;
+
     no warnings 'redefine';
     *{$symbol} = sub {
-        warn "DEBUG: entering $name\n";
+        warn sprintf "DEBUG[%s]:[%s] %s\n", scalar(localtime), $levels[$level], $name;
         return $code->(@_);
     };
 }

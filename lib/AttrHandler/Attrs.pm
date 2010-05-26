@@ -18,7 +18,6 @@ use constant {
 my @levels = ('NORM', 'DTLS', '');
 sub debug :ATTR {
     my ($symbol, $code, $level) = @_[SYMBOL, CODE, DATA];
-    $level ||= 1;
     my $name = join '::', *{$symbol}{PACKAGE}, *{$symbol}{NAME};
 
     $level ||= $level or 0;

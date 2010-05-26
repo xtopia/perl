@@ -1,4 +1,5 @@
-use lib '.';
+package Attrhandler::test;
+
 use AttrHandler::Attrs;
 use base qw(AttrHandler::Attrs);
 
